@@ -1,4 +1,4 @@
-"""Conversion de texto/PDF a archivos de audio usando TTS offline (pyttsx3)."""
+"""Text/PDF to audio conversion using offline TTS (pyttsx3)."""
 
 from pathlib import Path
 
@@ -14,14 +14,14 @@ def text_to_audio(
     volume: float = 1.0,
     voice_id: str | None = None,
 ) -> Path:
-    """Convierte un texto a un archivo de audio (.wav o .mp3 segun soporte del sistema).
+    """Convert text to an audio file (.wav or .mp3 depending on system support).
 
-    rate: palabras por minuto aproximadas.
-    volume: entre 0.0 y 1.0.
-    voice_id: id de voz del sistema (ver pdftalk.converter.list_voices()).
+    rate: approximate words per minute.
+    volume: between 0.0 and 1.0.
+    voice_id: system voice id (see pdftalk.converter.list_voices()).
     """
     if not text.strip():
-        raise ValueError("El texto a convertir esta vacio.")
+        raise ValueError("The text to convert is empty.")
 
     output = Path(output_path)
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -48,13 +48,13 @@ def pdf_to_audio(
     volume: float = 1.0,
     voice_id: str | None = None,
 ) -> Path:
-    """Extrae el texto de un PDF y lo convierte directamente a audio."""
+    """Extract the text from a PDF and convert it directly to audio."""
     text = extract_text(pdf_path)
     return text_to_audio(text, output_path, rate=rate, volume=volume, voice_id=voice_id)
 
 
 def list_voices() -> list[dict]:
-    """Lista las voces disponibles en el sistema (id, nombre, idiomas)."""
+    """List the voices available on the system (id, name, languages)."""
     engine = pyttsx3.init()
     try:
         voices = engine.getProperty("voices")

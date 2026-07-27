@@ -1,59 +1,59 @@
 # pdftalk
 
-Convierte archivos PDF en archivos de audio (texto a voz), pensado para ayudar
-a personas con discapacidad visual a acceder al contenido de un PDF.
+Converts PDF files into audio files (text-to-speech), designed to help
+visually impaired people access the content of a PDF.
 
-- Extraccion de texto nativo del PDF (no soporta PDFs escaneados/imagenes sin OCR).
-- Sintesis de voz **offline**, usando las voces instaladas en el sistema operativo
-  (via [`pyttsx3`](https://pypi.org/project/pyttsx3/)), sin necesidad de internet
-  ni API keys.
+- Native text extraction from the PDF (does not support scanned/image PDFs without OCR).
+- **Offline** speech synthesis, using the voices installed on the operating system
+  (via [`pyttsx3`](https://pypi.org/project/pyttsx3/)), with no internet connection
+  or API keys required.
 
-## Instalacion
+## Installation
 
-Desde el repositorio (mientras no este publicado en PyPI):
+From the repository (while not published on PyPI):
 
 ```bash
-pip install git+https://github.com/juliette-martel/pdftalk.git
+pip install git+https://github.com/reimbursor-info-company/pdftalk.git
 ```
 
-Para desarrollo local:
+For local development:
 
 ```bash
-git clone https://github.com/juliette-martel/pdftalk.git
+git clone https://github.com/reimbursor-info-company/pdftalk.git
 cd pdftalk
 pip install -e ".[dev]"
 ```
 
-## Uso como libreria
+## Usage as a library
 
 ```python
 from pdftalk import pdf_to_audio
 
-pdf_to_audio("documento.pdf", "documento.wav")
+pdf_to_audio("document.pdf", "document.wav")
 ```
 
 ```python
 from pdftalk import extract_text, text_to_audio
 
-texto = extract_text("documento.pdf")
-text_to_audio(texto, "documento.wav", rate=160, volume=1.0)
+text = extract_text("document.pdf")
+text_to_audio(text, "document.wav", rate=160, volume=1.0)
 ```
 
-## Uso desde la linea de comandos
+## Usage from the command line
 
 ```bash
-pdftalk documento.pdf -o documento.wav
+pdftalk document.pdf -o document.wav
 pdftalk --list-voices
-pdftalk documento.pdf -o documento.wav --rate 150 --voice-id "<id-de-voz>"
+pdftalk document.pdf -o document.wav --rate 150 --voice-id "<voice-id>"
 ```
 
-## Limitaciones conocidas
+## Known limitations
 
-- Solo extrae texto nativo del PDF; los PDFs escaneados (imagenes) no
-  produciran audio porque no se aplica OCR.
-- La calidad y disponibilidad de voces depende del sistema operativo
-  (SAPI5 en Windows, NSSpeechSynthesizer en macOS, espeak en Linux).
+- Only extracts native text from the PDF; scanned (image) PDFs will not
+  produce audio because OCR is not applied.
+- Voice quality and availability depend on the operating system
+  (SAPI5 on Windows, NSSpeechSynthesizer on macOS, espeak on Linux).
 
-## Licencia
+## License
 
 MIT

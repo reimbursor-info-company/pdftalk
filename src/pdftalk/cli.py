@@ -1,4 +1,4 @@
-"""Interfaz de linea de comandos: pdftalk archivo.pdf -o salida.wav"""
+"""Command-line interface: pdftalk file.pdf -o output.wav"""
 
 import argparse
 import sys
@@ -10,17 +10,17 @@ from .extractor import PdfTextExtractionError
 def main() -> None:
     parser = argparse.ArgumentParser(
         prog="pdftalk",
-        description="Convierte un PDF en un archivo de audio narrado.",
+        description="Convert a PDF into a narrated audio file.",
     )
-    parser.add_argument("pdf", nargs="?", help="Ruta al archivo PDF de entrada")
+    parser.add_argument("pdf", nargs="?", help="Path to the input PDF file")
     parser.add_argument(
-        "-o", "--output", default="output.wav", help="Ruta del archivo de audio de salida"
+        "-o", "--output", default="output.wav", help="Path to the output audio file"
     )
-    parser.add_argument("--rate", type=int, default=170, help="Velocidad de habla (palabras/min)")
-    parser.add_argument("--volume", type=float, default=1.0, help="Volumen entre 0.0 y 1.0")
-    parser.add_argument("--voice-id", default=None, help="ID de voz del sistema a utilizar")
+    parser.add_argument("--rate", type=int, default=170, help="Speech rate (words/min)")
+    parser.add_argument("--volume", type=float, default=1.0, help="Volume between 0.0 and 1.0")
+    parser.add_argument("--voice-id", default=None, help="System voice ID to use")
     parser.add_argument(
-        "--list-voices", action="store_true", help="Lista las voces disponibles y termina"
+        "--list-voices", action="store_true", help="List available voices and exit"
     )
 
     args = parser.parse_args()
@@ -31,7 +31,7 @@ def main() -> None:
         return
 
     if not args.pdf:
-        parser.error("Debes indicar la ruta del PDF a convertir (o usar --list-voices).")
+        parser.error("You must specify the path to the PDF to convert (or use --list-voices).")
 
     try:
         output = pdf_to_audio(
@@ -45,7 +45,7 @@ def main() -> None:
         print(f"Error: {exc}", file=sys.stderr)
         sys.exit(1)
 
-    print(f"Audio generado en: {output}")
+    print(f"Audio generated at: {output}")
 
 
 if __name__ == "__main__":
