@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pdftalk"
-version = "0.2.0"
+version = "0.2.1"
 description = "Converts PDF files into audio (text-to-speech) for accessibility for visually impaired people"
 readme = "README.md"
 requires-python = ">=3.9"
