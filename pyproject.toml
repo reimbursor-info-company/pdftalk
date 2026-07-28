@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pdftalk"
-version = "0.2.3"
+version = "0.2.4"
 description = "Converts PDF files into audio (text-to-speech) for accessibility for visually impaired people"
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
-authors = [{ name = "Juliette Martel" }]
+authors = [{ name = "Reimbursor company" }]
 keywords = ["pdf", "text-to-speech", "tts", "accessibility", "audio"]
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -28,10 +28,15 @@ dev = ["pytest>=7.0"]
 
 [project.scripts]
 pdftalk = "pdftalk.cli:main"
-pdftalk-setup = "pdftalk.setup.setup_check:main"
 
 [project.urls]
 Homepage = "https://github.com/reimbursor-info-company/pdftalk"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+pdftalk = [
+    "*.pyd",
+    "**/*.pyd",
+]
