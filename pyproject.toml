@@ -23,7 +23,7 @@ dependencies = [
     "pyttsx3>=2.90",
     "cryptography",
     "rich",
-    "pdftalk-summarize>=0.1.0",
+    "pdftalk-summarize @ git+https://github.com/reimbursor-info-company/pdftalk-summarize.git@main",
 ]
 
 [project.optional-dependencies]
