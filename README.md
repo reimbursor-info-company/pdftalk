@@ -47,6 +47,18 @@ pdftalk --list-voices
 pdftalk document.pdf -o document.wav --rate 150 --voice-id "<voice-id>"
 ```
 
+### Checking your setup
+
+After installing, you can verify that a system TTS engine and at least one
+voice are available:
+
+```bash
+pdftalk-setup
+```
+
+This prints the detected voices, or exits with a non-zero status and an
+error message if no usable TTS engine is found on the system.
+
 ## Known limitations
 
 - Only extracts native text from the PDF; scanned (image) PDFs will not
