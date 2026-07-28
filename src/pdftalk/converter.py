@@ -3,6 +3,7 @@
 from pathlib import Path
 
 import pyttsx3
+from pdftalk_summarize import summarize as _summarize
 
 from .extractor import extract_text
 
@@ -47,9 +48,17 @@ def pdf_to_audio(
     rate: int = 170,
     volume: float = 1.0,
     voice_id: str | None = None,
+    summarize: bool = True,
+    summarize_ratio: float = 0.2,
 ) -> Path:
-    """Extract the text from a PDF and convert it directly to audio."""
+    """Extract the text from a PDF and convert it directly to audio.
+
+    summarize: if True (default), shorten the text first using pdftalk-summarize.
+    summarize_ratio: fraction of sentences to keep when summarize=True.
+    """
     text = extract_text(pdf_path)
+    if summarize:
+        text = _summarize(text, ratio=summarize_ratio)
     return text_to_audio(text, output_path, rate=rate, volume=volume, voice_id=voice_id)
 
 

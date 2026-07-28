@@ -22,6 +22,14 @@ def main() -> None:
     parser.add_argument(
         "--list-voices", action="store_true", help="List available voices and exit"
     )
+    parser.add_argument(
+        "--no-summarize", action="store_false", dest="summarize",
+        help="Narrate the full PDF text instead of summarizing it first",
+    )
+    parser.add_argument(
+        "--summarize-ratio", type=float, default=0.2,
+        help="Fraction of sentences to keep when summarizing (default: 0.2)",
+    )
 
     args = parser.parse_args()
 
@@ -40,6 +48,8 @@ def main() -> None:
             rate=args.rate,
             volume=args.volume,
             voice_id=args.voice_id,
+            summarize=args.summarize,
+            summarize_ratio=args.summarize_ratio,
         )
     except PdfTextExtractionError as exc:
         print(f"Error: {exc}", file=sys.stderr)
